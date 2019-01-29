@@ -27,11 +27,11 @@ void setup();
 
 void draw();
 
-void input();
+void actionReading();
 
-void logic();
+void mechanics();
 
-void over();
+void end();
 
 int main() {
     reset = true;
@@ -42,12 +42,12 @@ int main() {
         setup();
         while (!gameOver) {
             draw();
-            input();
-            logic();
+            actionReading();
+            mechanics();
             Sleep(30);
 
         }
-        over();
+        end();
     }
 
     return 1;
@@ -81,7 +81,7 @@ void introduction() {
     printf("Use [J] to boost speed");
     printf("\n");
     printf("\n");
-    printf("Let us prepare everything...");
+    printf("Let us prepare everything...\n");
 }
 
 
@@ -105,14 +105,14 @@ void setup() {
 void draw() {
     system("cls");
     // top border
-    for (int i = 0; i < WIDTH; i++)
+    for (int i = 0; i < WIDTH + 1; i++)
         printf("#");
     printf("\n");
 
     //walls
 
     for (int i = 0; i < HEIGHT; i++) {
-        for (int j = 0; j < WIDTH + 2; j++) {
+        for (int j = 0; j < WIDTH + 1; j++) {
             if (j == 0 || j == (WIDTH - 1))
                 printf("#");
             if (i == y && j == x) {
@@ -151,7 +151,7 @@ void draw() {
     printf("<Score:> %d", score);
 }
 
-void input() {
+void actionReading() {
     if (_kbhit()) {
         switch (_getch()) {
             case 'a':
@@ -176,7 +176,7 @@ void input() {
     }
 }
 
-void logic() {
+void mechanics() {
 
     int prevX = tailX[0];
     int prevY = tailY[0];
@@ -198,21 +198,21 @@ void logic() {
         if (boost) {
             x -= 2;
             boost = false;
-        }else
+        } else
             x -= 1;
     }
     if (dir == RIGHT) {
         if (boost) {
             x += 2;
             boost = false;
-        }else
+        } else
             x += 1;
     }
     if (dir == UP) {
         if (boost) {
             y -= 2;
             boost = false;
-        }else
+        } else
             y -= 1;
     }
 
@@ -221,7 +221,7 @@ void logic() {
         if (boost) {
             y += 2;
             boost = false;
-        }else
+        } else
             y += 1;
 
     }
@@ -257,7 +257,7 @@ void logic() {
     }
 }
 
-void over() {
+void end() {
     system("cls");
     printf("\n"
            "  ___    __    __  __  ____    _____  _  _  ____  ____ \n"
@@ -269,9 +269,9 @@ void over() {
         printf("\n");
         printf("\n");
         printf("You have managed to complete your task.\n");
-        printf("It was not that hard, isn't it?\n");
-        printf("\nYou have got %d points?\n", score);
-        printf("\nYou reacher snake level:  %d \n", tailLength / 10);
+        printf("It wasn't too hard, wasn't it?\n");
+        printf("\nYou have reached %d points?\n", score);
+        printf("\nYou reached snake level:  %d \n", tailLength / 10);
         printf("Want to try again?: Y(es) or N(o)");
 
     } else if (score >= 1000 && score <= 2000) {
@@ -279,16 +279,16 @@ void over() {
         printf("\n");
         printf("You were almost there.\n");
         printf("But the task turned out to be overwhelming. That's a pity.");
-        printf("\nYou got %d points?\n", score);
-        printf("\nYou reacher snake level:  %d \n", tailLength / 10);
+        printf("\nYou have reached %d points?\n", score);
+        printf("\nYou have reached snake level:  %d \n", tailLength / 10);
         printf("It's ok. Want to try again?: Y(es) or N(o)");
     } else if (score < 1000) {
         printf("\n");
         printf("\n");
         printf("Really!? You died that fast?!\n");
         printf("\n");
-        printf("You got %d points?\n", score);
-        printf("\nYou reacher snake level:  %d \n", tailLength / 10);
+        printf("You have reached %d points?\n", score);
+        printf("\nYou have reached snake level:  %d \n", tailLength / 10);
         printf("It's ok. It happens. Want to try again?: Y(es) or N(o)");
 
     }
