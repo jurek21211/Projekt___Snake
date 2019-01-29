@@ -17,7 +17,7 @@ char name[50], answer = 'Y';
 
 bool gameOver, reset, boost;
 enum direction {
-    STOP = 0, LEFT, RIGHT, UP, DOWN
+    STOP, LEFT, RIGHT, UP, DOWN
 };
 enum direction dir;
 
@@ -270,14 +270,17 @@ void over() {
         printf("\n");
         printf("You have managed to complete your task.\n");
         printf("It was not that hard, isn't it?\n");
-        printf("\nYou got %d points?\n", score);
+        printf("\nYou have got %d points?\n", score);
+        printf("\nYou reacher snake level:  %d \n", tailLength / 10);
         printf("Want to try again?: Y(es) or N(o)");
+
     } else if (score >= 1000 && score <= 2000) {
         printf("\n");
         printf("\n");
         printf("You were almost there.\n");
         printf("But the task turned out to be overwhelming. That's a pity.");
         printf("\nYou got %d points?\n", score);
+        printf("\nYou reacher snake level:  %d \n", tailLength / 10);
         printf("It's ok. Want to try again?: Y(es) or N(o)");
     } else if (score < 1000) {
         printf("\n");
@@ -285,6 +288,7 @@ void over() {
         printf("Really!? You died that fast?!\n");
         printf("\n");
         printf("You got %d points?\n", score);
+        printf("\nYou reacher snake level:  %d \n", tailLength / 10);
         printf("It's ok. It happens. Want to try again?: Y(es) or N(o)");
 
     }
